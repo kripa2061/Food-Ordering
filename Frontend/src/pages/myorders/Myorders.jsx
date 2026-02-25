@@ -3,7 +3,7 @@ import axios from "axios";
 import { storeContext } from "../../Context/Context";
 import { assets } from "../../assets/frontend_assets/assets";
 import "./Myorders.css";
-
+console.log('parcel_icon', assets.parcel_icon);
 const Myorders = () => {
   const { url, token } = useContext(storeContext);
   const [orders, setOrders] = useState([]);

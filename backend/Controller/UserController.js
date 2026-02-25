@@ -21,9 +21,8 @@ const registerUser = async (req, res) => {
 
     if (!validator.isEmail(email)) return res.json({ success: false, message: "Invalid email" });
     if (password.length < 8) return res.json({ success: false, message: "Password must be at least 8 chars" });
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+console.log(passwordRegex.test(password));
 if (!passwordRegex.test(password)) {
   return res.status(400).json({
     message:

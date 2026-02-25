@@ -38,7 +38,6 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
       [name]: value,
     }));
 
-    // Frontend password validation (signup only)
     if (name === "password" && currentState === "signup") {
       if (!passwordRegex.test(value)) {
         setPasswordError(
@@ -53,7 +52,6 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    // Block signup if password invalid
     if (currentState === "signup" && passwordError) {
       alert("Please fix password requirements");
       return;
@@ -65,7 +63,19 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
           ? "/api/user/login"
           : "/api/user/register";
 
-      const response = await axios.post(url + endpoint, formData);
+      const payload =
+        currentState === "signup"
+          ? {
+              name: formData.name.trim(),
+              email: formData.email.trim(),
+              password: formData.password,
+            }
+          : {
+              email: formData.email.trim(),
+              password: formData.password,
+            };
+
+      const response = await axios.post(url + endpoint, payload);
 
       if (!response.data.success) {
         alert(response.data.message);
@@ -82,7 +92,8 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
         setStep("otp");
       }
     } catch (err) {
-      alert("Something went wrong");
+      console.log(err);
+      alert("Something went wrong during signup/login");
     }
   };
 
@@ -91,7 +102,7 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
 
     try {
       const response = await axios.post(url + "/api/user/verify-otp", {
-        email: formData.email,
+        email: formData.email.trim(),
         otp,
       });
 
@@ -104,6 +115,7 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
       localStorage.setItem("token", response.data.token);
       setShowLogin(false);
     } catch (err) {
+      console.log(err);
       alert("OTP verification failed");
     }
   };
