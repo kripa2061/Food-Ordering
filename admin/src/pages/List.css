@@ -1,29 +1,44 @@
 .list-container {
   width: 100%;
-  margin-top: 0px;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
+}
+
+.list-container h2 {
   text-align: center;
-  
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
 }
 
 .list-header {
   display: grid;
-  grid-template-columns: 100px 1fr 1fr 1fr 150px; /* wider for buttons */
-  background: rgba(255, 99, 71, 0.858);
-  padding: 17px 12px;
-  font-weight: 350;
+  grid-template-columns: 100px 1fr 1fr 1fr 150px;
+  background: rgba(255, 99, 71, 0.85);
+  padding: 12px;
+  font-weight: 500;
   border-radius: 6px;
+  text-align: left;
+  align-items: center;
 }
 
 .list-row {
   display: grid;
   grid-template-columns: 100px 1fr 1fr 1fr 150px;
   align-items: center;
-  background: white;
-  padding: 12px 15px;
+  background: #fff;
+  padding: 12px;
   margin-top: 10px;
   border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  gap: 10px;
+  transition: transform 0.2s ease;
+}
+
+.list-row:hover {
+  transform: translateY(-2px);
 }
 
 .list-row img {
@@ -36,6 +51,8 @@
 .list-row p {
   margin: 0;
   font-size: 14px;
+  color: #555;
+  word-break: break-word;
 }
 
 /* Action buttons container */
@@ -45,9 +62,8 @@
   justify-content: center;
 }
 
-/* Delete button */
-.delete-btn {
-  background-color: rgb(255, 99, 71);
+/* Buttons */
+.delete-btn, .edit-btn {
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -55,6 +71,10 @@
   font-size: 14px;
   cursor: pointer;
   transition: 0.2s ease;
+}
+
+.delete-btn {
+  background-color: rgb(255, 99, 71);
 }
 
 .delete-btn:hover {
@@ -62,19 +82,70 @@
   transform: scale(1.05);
 }
 
-/* Edit button */
 .edit-btn {
   background-color: #1890ff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
 }
 
 .edit-btn:hover {
   background-color: #096dd9;
   transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .list-header,
+  .list-row {
+    grid-template-columns: 80px 1fr 1fr 120px;
+  }
+
+  .list-row img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .delete-btn, .edit-btn {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .list-header {
+    display: none; /* hide header on mobile */
+  }
+
+  .list-row {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    padding: 12px 15px;
+  }
+
+  .list-row img {
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    margin: 0 auto 10px;
+  }
+
+  .list-row p {
+    text-align: center;
+  }
+
+  .action-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .list-row img {
+    max-width: 150px;
+    height: 120px;
+  }
+
+  .delete-btn, .edit-btn {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
 }
