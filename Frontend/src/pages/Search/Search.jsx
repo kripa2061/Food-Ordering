@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { storeContext } from '../../Context/Context';
+import { StoreContext } from '../../Context/Context';
 
 import './Search.css';
 import FoodDisplay from '../../Component/FoodDisplay/FoodDisplay';
 
 const Search = () => {
-  const { foodList } = useContext(storeContext);
+  const { foodList } = useContext(StoreContext);
   const [query, setQuery] = useState('');
 
   // Filter foods based on search query

@@ -106,7 +106,7 @@
 }
 
 /* BUTTON */
-button {
+.admin-login-button{
   margin-top: 10px;
   padding: 14px;
   border: none;

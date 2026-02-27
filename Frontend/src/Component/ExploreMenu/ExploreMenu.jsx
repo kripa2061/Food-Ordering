@@ -1,8 +1,11 @@
 import React from 'react'
+
 import { menu_list } from '../../assets/frontend_assets/assets'
 import './ExploreMenu.css';
-
 const ExploreMenu = ({ category, setCategory }) => {
+
+
+
   return (
     <div className='explore-menu' id="explore-menu">
       <div className="text">

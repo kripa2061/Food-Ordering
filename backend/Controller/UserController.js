@@ -91,9 +91,10 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Minimal change: handle Bearer token
+
 const getUser = async (req, res) => {
   try { 
+
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.json({ success: false, message: "No token provided" });
     const token = authHeader.split(" ")[1];
@@ -102,6 +103,7 @@ const getUser = async (req, res) => {
     const user = await UserModel.findById(decoded.id).select("name email isAccountVerify");
     if (!user) return res.json({ success: false, message: "User does not exist" }); 
     res.json({ success: true, user }); 
+ 
   } catch (error) { 
     res.json({ success: false, message: error.message }); 
   } 

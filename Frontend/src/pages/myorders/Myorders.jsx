@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { storeContext } from "../../Context/Context";
+import { StoreContext } from "../../Context/Context";
 import { assets } from "../../assets/frontend_assets/assets";
 import "./Myorders.css";
-console.log('parcel_icon', assets.parcel_icon);
+
 const Myorders = () => {
-  const { url, token } = useContext(storeContext);
+  const { url, token } = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = async () => {
@@ -13,11 +13,13 @@ const Myorders = () => {
       const res = await axios.post(
         url + "/api/order/userorder",
         {},
-        { headers: { token } }
+        {
+          headers: { Authorization: `Bearer ${token}` }, // ✅ Minimal change
+        }
       );
       setOrders(res.data.data || []);
     } catch (err) {
-      console.log(err);
+      console.error("fetchOrders error:", err);
     }
   };
 
@@ -30,7 +32,9 @@ const Myorders = () => {
       <h2 className="myorders-title">Your Orders</h2>
 
       <div className="myorders">
-        {orders.length === 0 && <p className="no-orders">You have no orders yet.</p>}
+        {orders.length === 0 && (
+          <p className="no-orders">You have no orders yet.</p>
+        )}
 
         {orders.map((order, idx) => (
           <div className="order-card" key={idx}>
@@ -54,14 +58,16 @@ const Myorders = () => {
               </p>
 
               {/* Status */}
-              <p className={`order-status ${order.status.toLowerCase().replace(/\s/g,'')}`}>
+              <p
+                className={`order-status ${order.status
+                  .toLowerCase()
+                  .replace(/\s/g, "")}`}
+              >
                 <span>&#x25cf;</span> <strong>{order.status}</strong>
               </p>
 
               {/* Track button */}
-              <button onClick={() => fetchOrders()}>
-                Track Order
-              </button>
+              <button onClick={() => fetchOrders()}>Track Order</button>
             </div>
           </div>
         ))}

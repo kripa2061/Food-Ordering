@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { storeContext } from '../../Context/Context';
+import { StoreContext } from '../../Context/Context';
 import FoodDisplay from '../FoodDisplay/FoodDisplay';
 import './Food_list.css';
 
 const Food_list = ({ category }) => {
-  const { foodList,url } = useContext(storeContext);
+  const { foodList,url } = useContext(StoreContext);
   const filteredList = !category || category.toLowerCase() === "all"
     ? foodList
     : foodList.filter(item => item.category.toLowerCase() === category.toLowerCase());

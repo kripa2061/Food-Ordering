@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { storeContext } from '../../Context/Context';
+import { StoreContext } from '../../Context/Context';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const Cart = () => {
 
   const { RemoveFromCart, cartItem, getTotal, url, foodList, token } =
-    useContext(storeContext);
+    useContext(StoreContext);
 
   const navigate = useNavigate();
 

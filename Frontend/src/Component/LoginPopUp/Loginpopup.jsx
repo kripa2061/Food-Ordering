@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { assets } from "../../assets/frontend_assets/assets";
 import "./Loginpopup.css";
-import { storeContext } from "../../Context/Context";
+import { StoreContext } from "../../Context/Context";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 
 const LoginPopup = ({ showLogin, setShowLogin }) => {
-  const { url, setToken } = useContext(storeContext);
+  const { url, setToken } = useContext(StoreContext);
 
   const [currentState, setCurrentState] = useState("signup");
   const [step, setStep] = useState("form");

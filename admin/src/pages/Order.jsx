@@ -123,6 +123,7 @@ const Order = ({ url }) => {
                   Out for delivery
                 </option>
                 <option value="Delivered">Delivered</option>
+                <option value="order cancelled">Order Cancelled</option>
               </select>
             </div>
           </div>
