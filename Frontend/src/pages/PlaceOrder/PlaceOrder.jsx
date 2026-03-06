@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
-  const { getTotal, foodList, cartItem, url, setCartItem, token } =
+  const { getTotal, foodList, cartItem, url, setCartItem, userData} =
     useContext(StoreContext);
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const PlaceOrder = () => {
       amount: getTotal() + 200,
     };
 
-    if (!token) {
+    if (!userData) {
       toast.error("Please login to place an order");
       navigate("/cart");
       return;
@@ -54,7 +54,7 @@ const PlaceOrder = () => {
     try {
       // ✅ Minimal change: use Authorization header as Bearer token
       const response = await axios.post(url + "/api/order/place", orderData, {
-        headers: { Authorization: `Bearer ${token}` },
+       withCredentials:true,
       });
 
       if (response.data.success) {
@@ -78,14 +78,14 @@ const PlaceOrder = () => {
   };
 
   useEffect(() => {
-    if (!token) {
+    if (!userData) {
       toast.error("Login to order");
       navigate("/cart");
     } else if (getTotal() === 0) {
       toast.error("Your cart is empty");
       navigate("/cart");
     }
-  }, [token, getTotal, navigate]);
+  }, [userData, getTotal, navigate]);
 
   return (
     <>

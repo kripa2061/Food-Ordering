@@ -12,7 +12,7 @@ const List = () => {
 
   const fetchList = async () => {
     try {
-      const response = await axios.get(`${url}/api/food/list`);
+      const response = await axios.get(`${url}/api/food/list`,{withCredentials:true});
       if (response.data.success) {
         setList(response.data.data);
       } else {
@@ -25,7 +25,7 @@ const List = () => {
 
   const removeItem = async (foodId) => {
     try {
-      const response = await axios.post(`${url}/api/food/delete`, { id: foodId });
+      const response = await axios.post(`${url}/api/food/delete`, { id: foodId },{withCredentials:true});
       if (response.data.success) {
         toast.success("Item removed");
         fetchList();

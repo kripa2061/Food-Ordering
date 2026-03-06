@@ -5,7 +5,7 @@ import { assets } from "../../assets/frontend_assets/assets";
 import "./Myorders.css";
 
 const Myorders = () => {
-  const { url, token } = useContext(StoreContext);
+  const { url,userData } = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = async () => {
@@ -14,7 +14,7 @@ const Myorders = () => {
         url + "/api/order/userorder",
         {},
         {
-          headers: { Authorization: `Bearer ${token}` }, // ✅ Minimal change
+         withCredentials:true, 
         }
       );
       setOrders(res.data.data || []);
@@ -24,8 +24,8 @@ const Myorders = () => {
   };
 
   useEffect(() => {
-    if (token) fetchOrders();
-  }, [token]);
+    if (userData) fetchOrders();
+  }, [userData]);
 
   return (
     <div className="myorders-wrapper">

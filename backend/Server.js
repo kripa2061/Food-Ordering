@@ -2,30 +2,35 @@ import './Config/env.js'
 
 import express from "express";
 import cors from "cors";
-
 import foodRouter from "./Routes/FoodRoute.js";
 import { connectDB } from "./Config/Database.js";
-
-
 import UserRouter from "./Routes/UserRoute.js";
 import orderRouter from "./Routes/orderRoute.js";
 import path from "path";
 import cartRouter from "./Routes/CartRoute.js";
-
 import adminRouter from './Routes/adminRoute.js';
-console.log("SMTPUSER:", process.env.SMTPUSER); // should print the username
-console.log("SMTPPASS:", process.env.SMTPPASS);
+import cookieParser from 'cookie-parser'
+
 const app = express();
 const port = process.env.PORT || 3000;
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+];
 
-// Middleware
-app.use(cors());
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); 
+    const trimmedOrigins = allowedOrigins.map(o => o.trim());
+    if (trimmedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true, 
+}));
 app.use(express.json());
-
-// Serve uploads folder for images
+app.use(cookieParser());
 app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 
-// API routes
 app.use("/api/food", foodRouter);
 app.use("/api/user", UserRouter);
 app.use("/api/order", orderRouter);
@@ -36,7 +41,6 @@ app.get("/", (req, res) => {
   res.send("API working");
 });
 
-// Connect DB and start server
 connectDB()
   .then(() => {
     app.listen(port, () => {

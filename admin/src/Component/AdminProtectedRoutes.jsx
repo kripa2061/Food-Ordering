@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const AdminProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("adminToken");
+  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  if (!token) {
-    return <Navigate to="/sign" replace />; // redirect to login
-  }
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await axios.get("http://localhost:5001/api/admin/check", { withCredentials: true });
+        setIsLoggedIn(res.data.success);
+      } catch {
+        setIsLoggedIn(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAdmin();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (!isLoggedIn) return <Navigate to="/sign" replace />;
 
   return children;
 };
 
-export default AdminProtectedRoute;
+export default AdminProtectedRoute; 

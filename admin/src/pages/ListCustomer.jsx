@@ -27,7 +27,7 @@ const ListCustomer = () => {
 
       if (isAdmin) {
         response = await axios.get(`${url}/api/user/getUser`, {
-          headers: { Authorization: `Bearer ${token}` },
+       withCredentials:true,
         });
         if (response.data.success) setList(response.data.data || []);
         else toast.error(response.data.message);

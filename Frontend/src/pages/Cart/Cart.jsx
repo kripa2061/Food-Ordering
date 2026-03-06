@@ -5,20 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Cart = () => {
-
-  const { RemoveFromCart, cartItem, getTotal, url, foodList, token } =
+  const { RemoveFromCart, cartItem, getTotal, url, foodList, userData } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
+    if (!userData) {
       toast.error("Please login first");
       navigate("/");
     }
-  }, [token, navigate]);
+  }, [userData, navigate]);
 
-  const handlecheckOut = () => {
+  const handleCheckOut = () => {
     if (getTotal() > 0) {
       navigate('/order');
     } else {
@@ -76,7 +75,7 @@ const Cart = () => {
             <p>Rs.{getTotal() === 0 ? 0 : getTotal() + 200}</p>
           </div>
 
-          <button onClick={handlecheckOut}>
+          <button onClick={handleCheckOut}>
             Proceed to Checkout
           </button>
         </div>

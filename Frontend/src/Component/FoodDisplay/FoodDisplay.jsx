@@ -5,11 +5,11 @@ import { StoreContext } from '../../Context/Context';
 import LoginPopup from '../LoginPopUp/Loginpopup';
 
 const FoodDisplay = ({ id, name, image, price, description }) => {
-  const { cartItem, AddToCart, RemoveFromCart, url, token } = useContext(StoreContext);
+  const { cartItem, AddToCart, RemoveFromCart, url,  userData } = useContext(StoreContext);
   const [showLogin, setShowLogin] = useState(false);
 
   const handleCart = () => {
-    if (!token) {
+    if (!userData) {
       setShowLogin(true); // show login popup if not logged in
     } else {
       AddToCart(id); // add item if logged in

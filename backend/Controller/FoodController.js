@@ -4,7 +4,7 @@ import fs from 'fs';
 // Add food item
 const addFood = async (req, res) => {
     try {
-        // Check if file exists
+       
         let image_fileName = req.file ? req.file.filename : "";
 
         const food = new foodModel({

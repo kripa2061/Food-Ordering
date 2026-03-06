@@ -46,7 +46,7 @@ const Edit = () => {
     if (image) formData.append("image", image);
 
     try {
-      const res = await axios.post(`${url}/api/food/edit/${id}`, formData);
+      const res = await axios.post(`${url}/api/food/edit/${id}`, formData,{withCredentials:true});
       if (res.data.success) {
         toast.success("Food updated");
         navigate("/list");

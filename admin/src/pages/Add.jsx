@@ -31,7 +31,7 @@ const Add = () => {
         formData.append("image", image)
 
         try {
-            const response = await axios.post(`${url}/api/food/add`, formData)
+            const response = await axios.post(`${url}/api/food/add`, formData,{withCredentials:true})
 
             if (response.data.success) {
                 toast.success("Food added successfully!")

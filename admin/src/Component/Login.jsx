@@ -9,29 +9,49 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   useEffect(() => {
-    if (localStorage.getItem("adminToken")) {
-      navigate("/add");
-    }
+    const checkAdmin = async () => {
+      try {
+        const res = await axios.get(`${url}/api/admin/check`, {
+          withCredentials: true, 
+        });
+        if (res.data.success) {
+          setIsLoggedIn(true);
+          navigate("/add"); // redirect to admin panel
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAdmin();
   }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${url}/api/user/adminlogin`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${url}/api/user/adminlogin`,
+        { email, password },
+        { withCredentials: true } // cookie will be set automatically
+      );
 
       if (!res.data.success) return alert(res.data.message);
 
-      localStorage.setItem("adminToken", res.data.token);
-      navigate("/add");
+      // No localStorage needed! Token is in HttpOnly cookie
+      navigate("/add"); // redirect to admin panel
     } catch (err) {
       alert("Server error");
+      console.error(err);
     }
   };
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="login-page">

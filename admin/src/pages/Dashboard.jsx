@@ -25,7 +25,7 @@ const Dashboard = () => {
   // Fetch dashboard stats (orders, revenue, users)
   const fetchDashboardStats = async () => {
     try {
-      const response = await axios.get(`${url}/api/admin/dashboard`);
+      const response = await axios.get(`${url}/api/admin/dashboard`,{withCredentials:true});
       if (response.data.success) {
         const data = response.data.data;
         setDashboardData({

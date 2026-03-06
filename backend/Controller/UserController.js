@@ -84,7 +84,13 @@ const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.json({ success: false, message: "Invalid credentials" });
 
-    const token = createToken(user._id);
+    const token = jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:"7d"})
+    res.cookie("token",token,{
+      httpOnly:true,
+      secure:process.env.NODE_ENV==="production",
+      sameSite:process.env.NODE_ENV==="production"?"none":"strict",
+      maxAge:7*24*60*60*1000
+    });
     res.json({ success: true, token });
   } catch (err) {
     res.json({ success: false, message: err.message });
@@ -94,16 +100,14 @@ const loginUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try { 
+    const token = req.cookies.token; // read from httpOnly cookie
+    if (!token) return res.json({ success: false, message: "No token provided" });
 
-    const authHeader = req.headers.authorization;
-    if (!authHeader) return res.json({ success: false, message: "No token provided" });
-    const token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
     const user = await UserModel.findById(decoded.id).select("name email isAccountVerify");
     if (!user) return res.json({ success: false, message: "User does not exist" }); 
+
     res.json({ success: true, user }); 
- 
   } catch (error) { 
     res.json({ success: false, message: error.message }); 
   } 
@@ -127,7 +131,14 @@ const adminLogin = async (req, res) => {
       return res.json({ success: false, message: "Password does not match" });
     }
 
-    const token = createToken(admin.id);
+  const token = jwt.sign({ id: "admin123" }, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+  res.cookie("adminToken", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  });
 
     res.json({ success: true, token });
   } catch (error) {
