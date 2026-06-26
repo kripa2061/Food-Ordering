@@ -32,24 +32,29 @@ const Login = () => {
     checkAdmin();
   }, [navigate]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(
-        `${url}/api/user/adminlogin`,
-        { email, password },
-        { withCredentials: true } // cookie will be set automatically
-      );
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      if (!res.data.success) return alert(res.data.message);
+  try {
+    const res = await axios.post(
+      `${url}/api/user/adminlogin`,
+      { email, password },
+      { withCredentials: true }
+    );
 
-      // No localStorage needed! Token is in HttpOnly cookie
-      navigate("/add"); // redirect to admin panel
-    } catch (err) {
-      alert("Server error");
-      console.error(err);
+    if (!res.data.success) {
+      return alert(res.data.message);
     }
-  };
+
+    // Save token for App.jsx
+    localStorage.setItem("adminToken", res.data.token);
+
+    navigate("/add");
+  } catch (err) {
+    alert("Server error");
+    console.error(err);
+  }
+};
 
   if (loading) return <div>Loading...</div>;
 

@@ -18,10 +18,9 @@ import Dashboard from "./pages/Dashboard";
 const App = () => {
   const url = "https://food-ordering-backend-jygm.onrender.com";
   const location = useLocation();
-  const token = localStorage.getItem("adminToken");
+ const token = localStorage.getItem("adminToken");
 
-
-  const showLayout = token && location.pathname !== "/sign";
+const showLayout = token && location.pathname !== "/sign";
 
   return (
     <div className="app-container">

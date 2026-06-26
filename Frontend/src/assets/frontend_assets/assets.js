@@ -1,5 +1,5 @@
 import basket_icon from './basket_icon.png'
-import logo from './logo.png'
+
 import chilliPepper from './chilli-pepper.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
@@ -45,7 +45,7 @@ import food_29 from './food_29.png'
 import food_30 from './food_30.png'
 import food_31 from './food_31.png'
 import food_32 from './food_32.png'
-
+import menu_9 from './nonveg.png'
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
 import remove_icon_red from './remove_icon_red.png'
@@ -113,6 +113,10 @@ export const menu_list = [
     {
         menu_name: "Cake",
         menu_image: menu_5
+    },
+    {
+        menu_name:"Non-Veg",
+        menu_image:menu_9,
     },
     {
         menu_name: "Pure Veg",
