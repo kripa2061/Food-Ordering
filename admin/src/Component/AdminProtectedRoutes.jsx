@@ -9,7 +9,7 @@ const AdminProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkAdmin = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/admin/check", { withCredentials: true });
+        const res = await axios.get("https://food-ordering-backend-jygm.onrender.com/api/admin/check", { withCredentials: true });
         setIsLoggedIn(res.data.success);
       } catch {
         setIsLoggedIn(false);
