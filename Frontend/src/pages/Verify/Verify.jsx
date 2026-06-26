@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
-import './verify.css'
+import './Verify.css'
 import { StoreContext } from '../../Context/Context'
 
 
