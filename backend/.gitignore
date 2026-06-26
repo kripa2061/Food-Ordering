@@ -1,0 +1,9 @@
+# Inside .gitignore
+node_modules/
+dist/
+.env
+Frontend/src/assets/frontend_assets/*.png
+node_modules
+.env
+dist
+build
