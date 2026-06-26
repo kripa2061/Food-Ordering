@@ -4,7 +4,7 @@ import axios from 'axios';
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
-  const url = "http://localhost:5001";
+  const url = "https://food-ordering-backend-jygm.onrender.com";
 
   const [userData, setUserData] = useState(null);
   const [cartItem, setCartItem] = useState(

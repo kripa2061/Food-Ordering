@@ -1,4 +1,4 @@
-import logo from './logo.png';
+
 import add_icon from './add_icon.png';
 import order_icon from './order_icon.png';
 import profile_image from './profile_image.png';
@@ -8,7 +8,7 @@ import item from './item.png';
 import admin from './afmin.jpg';
 import login from './Login.jpeg'
 export const assets = {
-    logo,
+   
     add_icon,
     order_icon,
     profile_image,

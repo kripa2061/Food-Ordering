@@ -14,7 +14,7 @@ import cookieParser from 'cookie-parser'
 const app = express();
 const port = process.env.PORT || 3000;
 const allowedOrigins = [
-  "http://localhost:5173",
+  "https://food-ordering-9ij3.onrender.com",
   "http://localhost:5174",
 ];
 

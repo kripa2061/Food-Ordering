@@ -209,7 +209,13 @@ body{
     opacity:1;
     visibility:visible;
 }
+.mobile-login{
+    display: none;
+}
 
+.desktop-login{
+    display: block;
+}
 /* ========================= */
 /* Tablet */
 /* ========================= */
