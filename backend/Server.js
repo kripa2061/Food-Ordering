@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const allowedOrigins = [
   "https://food-ordering-9ij3.onrender.com",
-  "http://localhost:5174",
+  "https://food-ordering-admin-yunn.onrender.com",
 ];
 
 app.use(cors({

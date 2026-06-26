@@ -1,14 +1,41 @@
 .food_list {
-    box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;     
-  gap: 35px;
-  padding: 10px 20px;
-  margin: 10px 20px 0 70px;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  margin: 20px 40px;
+  box-sizing: border-box;
 }
 
 .text h2 {
   padding: 10px 20px;
   margin: 30px 20px 0 40px;
+}
+/* Laptop */
+@media (max-width: 1024px) {
+  .food_list {
+    grid-template-columns: repeat(3, 1fr);
+    margin: 20px;
+    gap: 20px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .food_list {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 15px;
+    padding: 15px;
+    gap: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .food_list {
+    grid-template-columns: repeat(2, 1fr); /* Always 2 cards */
+    margin: 10px;
+    padding: 10px;
+    gap: 10px;
+  }
 }
