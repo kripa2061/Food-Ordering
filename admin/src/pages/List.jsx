@@ -6,8 +6,8 @@ import './List.css'
 
 const List = () => {
   const [list, setList] = useState([]);
-  // const url = "https://food-ordering-backend-jygm.onrender.com";
-     const url = "http://localhost:5001"
+  const url = "https://food-ordering-backend-jygm.onrender.com";
+    //  const url = "http://localhost:5001"
   const navigate = useNavigate();
   const location = useLocation();
 

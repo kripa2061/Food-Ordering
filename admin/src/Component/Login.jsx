@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
-  // const url = "https://food-ordering-backend-jygm.onrender.com";
-     const url = "http://localhost:5001"
+  const url = "https://food-ordering-backend-jygm.onrender.com";
+    //  const url = "http://localhost:5001"
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
