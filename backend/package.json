@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
@@ -23,9 +24,10 @@
     "multer": "^2.2.0",
     "nodemailer": "^7.0.13",
     "stripe": "^20.4.1",
-    "validator": "^13.15.35"
+    "validator": "^13.15.35",
+    "ws": "^8.21.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.14"
   }
 }

@@ -16,6 +16,8 @@ const port = process.env.PORT || 3000;
 const allowedOrigins = [
   "https://food-ordering-9ij3.onrender.com",
   "https://food-ordering-admin-yunn.onrender.com",
+  //  "http://localhost:5173",
+  // "http://localhost:5174",
 ];
 
 app.use(cors({

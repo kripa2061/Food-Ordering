@@ -20,7 +20,8 @@ const Dashboard = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const url = "https://food-ordering-backend-jygm.onrender.com";
+  // const url = "https://food-ordering-backend-jygm.onrender.com";
+     const url = "http://localhost:5001"
 
   // Fetch dashboard stats (orders, revenue, users)
   const fetchDashboardStats = async () => {

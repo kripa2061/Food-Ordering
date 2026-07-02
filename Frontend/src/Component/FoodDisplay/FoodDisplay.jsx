@@ -22,11 +22,11 @@ const FoodDisplay = ({ id, name, image, price, description }) => {
 
       <div className="food_display">
         <div className="food_image_wrap">
-          <img
-            className="food_image"
-            src={url + "/uploads/" + image}
-            alt={name}
-          />
+         <img
+  className="food_image"
+  src={image}
+  alt={name}
+/>
         </div>
         <div className="food_price_wrap">
           <h3 className="food_price">Rs.{price}</h3>

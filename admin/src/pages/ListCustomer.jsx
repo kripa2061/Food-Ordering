@@ -13,7 +13,8 @@ const ListCustomer = () => {
   const userToken = localStorage.getItem("userToken");
   const token = adminToken || userToken;
   const isAdmin = !!adminToken;
-  const url = "https://food-ordering-backend-jygm.onrender.com";
+  // const url = "https://food-ordering-backend-jygm.onrender.com";
+     const url = "http://localhost:5001"
 
   const fetchList = async () => {
     if (!token) {

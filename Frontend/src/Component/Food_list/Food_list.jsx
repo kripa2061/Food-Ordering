@@ -20,7 +20,7 @@ const Food_list = ({ category }) => {
             key={item._id}
             id={item._id}
             name={item.name}
-            image={item.image}
+            image={item.image?.[0]}
             price={item.price}
             description={item.description}
             category={item.category}

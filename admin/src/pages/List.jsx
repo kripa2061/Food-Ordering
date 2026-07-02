@@ -6,7 +6,8 @@ import './List.css'
 
 const List = () => {
   const [list, setList] = useState([]);
-  const url = "https://food-ordering-backend-jygm.onrender.com";
+  // const url = "https://food-ordering-backend-jygm.onrender.com";
+     const url = "http://localhost:5001"
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -55,7 +56,12 @@ const List = () => {
 
       {list.map((item) => (
         <div key={item._id} className="list-row">
-          <img src={`${url}/uploads/${item.image}`} alt={item.name} />
+         
+          <img
+  className="food_image"
+  src={item.image?.[0]}
+  alt={name}
+/>
           <p>{item.name}</p>
           <p>{item.category}</p>
           <p>Rs. {item.price}</p>

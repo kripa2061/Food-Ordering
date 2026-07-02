@@ -16,7 +16,8 @@ import ListCustomer from "./pages/ListCustomer";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
-  const url = "https://food-ordering-backend-jygm.onrender.com";
+  // const url = "https://food-ordering-backend-jygm.onrender.com";
+     const url = "http://localhost:5001"
   const location = useLocation();
  const token = localStorage.getItem("adminToken");
 

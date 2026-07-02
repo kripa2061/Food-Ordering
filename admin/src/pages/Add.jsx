@@ -21,7 +21,8 @@ const Add = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const url = "https://food-ordering-backend-jygm.onrender.com"
+        // const url = "https://food-ordering-backend-jygm.onrender.com"
+        const url = "http://localhost:5001"
 
         const formData = new FormData()
         formData.append("name", data.name)

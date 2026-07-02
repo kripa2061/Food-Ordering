@@ -8,7 +8,8 @@ import "./Add.css"; // same CSS as Add page
 const Edit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const url = "https://food-ordering-backend-jygm.onrender.com";
+  // const url = "https://food-ordering-backend-jygm.onrender.com";
+     const url = "http://localhost:5001"
 
   const [image, setImage] = useState(null);
   const [oldImage, setOldImage] = useState("");
